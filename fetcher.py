@@ -14,7 +14,8 @@ def fetch_pagespeed_results(urls, api_key):
         endpoint = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
         params = {
             "url": url,
-            "key": api_key
+            "key": api_key,
+            "strategy": "mobile"  # Specify mobile results
         }
         response = requests.get(endpoint, params=params)
         results.append(response.json())  # Append each result to the list
