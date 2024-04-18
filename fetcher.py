@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+from datetime import datetime
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -20,7 +21,14 @@ def fetch_pagespeed_results(urls, api_key):
     return results
 
 # Function to save the results
-def save_results(data, directory, filename):
+def save_results(data, url, directory_base='reports'):
+    # Format directory path with date
+    date_str = datetime.now().strftime('%m%d%y')
+    time_str = datetime.now().strftime('%H%M%S')
+    # Create a valid filename from the URL
+    filename = f"{time_str}-{url.replace('http://', '').replace('https://', '').replace('/', '_')}-report.json"
+    directory = os.path.join(directory_base, date_str)
+    
     if not os.path.exists(directory):
         os.makedirs(directory)
     filepath = os.path.join(directory, filename)
@@ -36,7 +44,8 @@ def main():
         return
     url_list = urls.split(',')  # Split the URL string into a list
     results = fetch_pagespeed_results(url_list, api_key)
-    save_results(results, 'reports', 'pagespeed_reports.json')
+    for result, url in zip(results, url_list):
+        save_results(result, url)
     print("Reports saved successfully.")
 
 if __name__ == "__main__":
