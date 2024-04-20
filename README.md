@@ -1,4 +1,6 @@
-# PAGESPEED
+# Pagespeed Sidekick
+
+Automatically pull and analyze reports from Google Pagespeed API
 
 ## One time setup
 
