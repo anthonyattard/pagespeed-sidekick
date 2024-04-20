@@ -1,6 +1,5 @@
 # PAGESPEED
 
-
 ## One time setup
 
 python3 -m venv venv
@@ -12,5 +11,9 @@ pip install python-dotenv
 source venv/bin/activate
 python fetcher.py
 
- "id": "largest-contentful-paint",
-                "title": "Largest Contentful Paint",
+## Analysis of output files
+
+"score":
+
+"id": "largest-contentful-paint",
+"title": "Largest Contentful Paint",
