@@ -15,7 +15,9 @@ def fetch_pagespeed_results(urls, api_key):
         params = {
             "url": url,
             "key": api_key,
-            "strategy": "mobile"  # Specify mobile results
+            "locale": "en-US",
+            "category": ["performance"], # "performance", "accessibility", "best_practices", "seo", "pwa"
+            "strategy": ["mobile"]  # "DESKTOP"
         }
         response = requests.get(endpoint, params=params)
         results.append(response.json())  # Append each result to the list
